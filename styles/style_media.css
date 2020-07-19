@@ -1,0 +1,103 @@
+
+@media screen and (max-width: 1279px){
+
+    /* common ++++++++++++++++++++ */
+
+    .avt-container__main{
+        max-width: calc(100vw - 35px);
+    }
+
+    /* projects ++++++++++++++++++ */
+    
+    .avt-projects{
+        padding-top: 36px;
+        height: auto;
+    }
+
+    .avt-project-slider{
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+     }
+
+    .avt-project-slider img{
+        width: 100%;
+        margin-bottom: 36px;
+    }
+
+    .avt-project-slider:before{
+        content: "";
+        width: 36px;
+        height: 36px;
+        top: calc(50% - 18px - 18px);
+        left: 13px;
+        background: #E3B873;
+        background-image: url("../images/sl_arr_l.png");
+        background-size: 6px 12px;
+        background-repeat: no-repeat;
+        background-position: calc(50% - 1px) center;
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0px 5px 30px rgba(227, 184, 115, 0.2);
+        cursor: pointer;
+    }    
+
+    .avt-project-slider:after{
+        content: "";
+        width: 36px;
+        height: 36px;
+        top: calc(50% - 18px - 18px);
+        right: 13px;
+        background: #E3B873;
+        background-image: url("../images/sl_arr_r.png");
+        background-size: 6px 12px;
+        background-repeat: no-repeat;
+        background-position: calc(50% + 1px) center;
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0px 5px 30px rgba(227, 184, 115, 0.2);
+        cursor: pointer;
+    }    
+
+    .avt-projects-rowdetail{
+        margin-bottom: 0px;
+    }
+
+    .avt-projects-rownav, .avt-projects-detail-bottomnav, .avt-projects-colright {
+        display: none;
+    }
+
+    .avt-projects-detail-datas__h2{
+        text-align: center;
+    }
+
+    .avt-projects-detail-datas__p{
+        font-size: 11px;
+        line-height: 1.585;
+        text-align: center;
+    }
+
+    .avt-projects-detail-datas-items{
+        width: 50%;
+        padding-bottom: 27px;
+    }
+    
+}
+
+@media screen and (min-width: 600px) and (max-width: 1279px){
+
+    /* common ++++++++++++++++++++ */
+    
+    .avt-container__main{
+        width: 95%;
+        max-width: 817px;
+    }
+
+    /* projects ++++++++++++++++++ */
+
+    .avt-projects-colleft{
+        margin: 0 auto;
+    }
+    
+}
