@@ -15,13 +15,13 @@
             <div class="avt-projects-colleft"></div>
             <div class="avt-projects-navtop avt-projects-colright">
                 <div class="avt-projects-navtop-item avt-projects-navtop-item--1 avt-title">
-                    <span class="avt-projects-navtop-item__text avt-projects-navtop-item__text--active">Rostov-on-Don, Admiral</span>
+                    <span class="avt-projects-navtop-item__text avt-projects-navtop-item__text--active" id="avtid-nav-project1">Rostov-on-Don, Admiral</span>
                 </div>
                 <div class="avt-projects-navtop-item avt-projects-navtop-item--2 avt-title">
-                    <span class="avt-projects-navtop-item__text"> Sochi, Thieves</span>
+                    <span class="avt-projects-navtop-item__text" id="avtid-nav-project2"> Sochi, Thieves</span>
                 </div>
                 <div class="avt-projects-navtop-item avt-projects-navtop-item--3 avt-title">
-                    <span class="avt-projects-navtop-item__text">Rostov-on-Don, Patriotic</span></li>
+                    <span class="avt-projects-navtop-item__text" id="avtid-nav-project3">Rostov-on-Don, Patriotic</span></li>
                 </div>
             </div>
         </div>
@@ -38,28 +38,30 @@
                 </p>
 
                 <div class="avt-project-slider avt-visible-mobile_line">
-                    <img src="./images/projects_photo_2.jpg" alt="Projects">
+                    <img src="./images/projects_photo_sm_2.jpg" alt="Projects">
                 </div>
 
                 <div class="avt-projects-detail-data-blocks">
 
                     <div class="avt-projects-detail-datas-items">
                         <h4 class="avt-title avt-title__h4 avt-projects-detail-datas-items__h4">City:</h4>
-                        <p class="avt-projects-detail-datas-items__p">Rostov-on-Don <br>LCD admiral</p>
+                        <p class="avt-projects-detail-datas-items__p">
+                            <span id="avtid-project-city">Rostov-on-Don</span><br>
+                            <span id="avtid-project-location_prefix">LCD</span> <span id="avtid-project-location_name">admiral</span></p>
                     </div>
                     <div class="avt-projects-detail-datas-items">
                         <h4 class="avt-title avt-title__h4 avt-projects-detail-datas-items__h4">Apartment area:</h4>
-                        <p class="avt-projects-detail-datas-items__p">81 m2</p>
+                        <p class="avt-projects-detail-datas-items__p" id="avtid-project-area">81 m2</p>
                     </div>
                     <div class="avt-projects-detail-datas-items--break">
                     </div>
                     <div class="avt-projects-detail-datas-items">
                         <h4 class="avt-title avt-title__h4 avt-projects-detail-datas-items__h4">Repair time:</h4>
-                        <p class="avt-projects-detail-datas-items__p">3.5 months</p>
+                        <p class="avt-projects-detail-datas-items__p" id="avtid-project-time">3.5 months</p>
                     </div>
                     <div class="avt-projects-detail-datas-items">
                         <h4 class="avt-title avt-title__h4 avt-projects-detail-datas-items__h4">Repair Cost:</h4>
-                        <p class="avt-projects-detail-datas-items__p">Upon request</p>
+                        <p class="avt-projects-detail-datas-items__p" id="avtid-project-cost">Upon request</p>
                     </div>
                 </div>
 
@@ -72,10 +74,11 @@
                 </div>
             </div>
             <div class="avt-projects-detail-photo avt-projects-colright">
-                <img src="./images/projects_photo_1.png" alt="Завершенные проекты. Ростов-на-Дону, Адмирал. 81 м2">
+                <img id="avtid-project-foto" src="./images/intro.png" alt="Завершенные проекты. Ростов-на-Дону, Адмирал. 81 м2">
             </div>
         </div>
     </section>
 
+    <script src="./scripts/slider.js"></script>
 </body>
 </html>
