@@ -1,9 +1,5 @@
 let sliderData = {
-    links_nav: {
-        project1: null,        
-        project2: null,
-        project3: null,
-    },
+    links_project_button: {},
     links_data: {
             city: null,
             location_prefix: null,
@@ -60,28 +56,35 @@ let sliderData = {
 };
 
 (function initSlider() {
- 
-    // ставим обработчики кликов по названию проектов
+
+    // ставим обработчики кликов по названию проектов, а также сохраняем ссылки на кнопки проектов
     let arrNavProject = [...document.querySelectorAll('.avt-projects-navtop-item__text')];
     arrNavProject.forEach((elem) => {
         elem.addEventListener('click', eventClick_NavProject);
+        let idButton = elem.id.split('-')[2];
+        sliderData.links_project_button[idButton] = elem;
     });
 
-    // сохраняем ссылки на элементы, в которых будут меняться данные о проектах при смене слайда
+    // находим ссылки на элементы интерфейса, в которых будем менять данные и сохраняем их
     let  linkData = sliderData.links_data;
     for (elem in linkData) {
         linkData[elem] = document.querySelector('#avtid-project-' + elem);
     };
 
-    let  linkFoto = sliderData.links_foto;
-    linkFoto = document.querySelector('#avtid-project-foto');
+    sliderData.links_foto = document.querySelector('#avtid-project-foto');
+
+    // находим ссылки на кнопки с названиями проекта и сохраняем ссылки на них
 
     console.log(sliderData);
+
+    console.log(sliderData.links_project_button[0]);
 })();
 
 function eventClick_NavProject(event) {
     let currButton = this;
     let idButton = currButton.id.split('-')[2];
+
+    let allProjectButton = 
 
     fillProject(idButton);
 };
@@ -96,10 +99,8 @@ function fillProject(argProject) {
     }
 
     let currFoto = sliderData.projects[argProject].foto;
-    let linkFoto = document.querySelector('#avtid-project-foto');//sliderData.links_foto;
+    let linkFoto = sliderData.links_foto;
 
-    console.log(linkFoto);
-    
     linkFoto.src = currFoto.path;
     linkFoto.alt = currFoto.alt;
     
