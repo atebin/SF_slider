@@ -207,6 +207,7 @@ body * {
     height: 10px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 }
 
 .avt-projects-detail-bottomnav-block-item--active{
