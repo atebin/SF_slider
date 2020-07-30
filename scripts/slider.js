@@ -10,7 +10,7 @@ let sliderData = {
             cost: null,
     },
     links_foto: null,
-    code_project_first: '',
+    current_project: null,
 };
 
 (function initSlider() {
@@ -31,25 +31,27 @@ let sliderData = {
         sliderData.links_project_dot[idButton] = elem;
     });
 
-    // находим ссылки на элементы интерфейса, в которых будем менять данные и сохраняем их
+    // ставим обработчики на стрелки
+    document.querySelector('.avt-projects-detail-bottomnav-before').addEventListener('click', eventClick_ArrowL);
+    document.querySelector('.avt-projects-detail-bottomnav-after').addEventListener('click', eventClick_ArrowR);
+
+    // находим ссылки на элементы интерфейса, в которых будем менять данные и сохраняем их объекте
     let  linkData = sliderData.links_data;
     for (elem in linkData) {
         linkData[elem] = document.querySelector('#avtid-project-' + elem);
     };
-
     sliderData.links_foto = document.querySelector('#avtid-project-foto');
 
-    // ставим обработчики на стрелки
-    document.querySelector('.avt-projects-detail-bottomnav').addEventListener('click', eventClick_ArrowL);
-    //document.querySelector('.avt-projects-detail-bottomnav:after').addEventListener('click', eventClick_ArrowR);
-
     // обрабатываем данные о проектах
+    let firstProject = null;
     for(elem in sourceProjects){
-        if (sliderData.code_project_first == '') {
-            sliderData.code_project_first = elem;
-            sliderData.links_project_button[elem].click();
+        if (firstProject === null) {
+            firstProject = elem;
         }
     };
+    
+    // заполняем страницу данными по первому проекту
+    sliderData.links_project_button[firstProject].click();
 
     console.log(sliderData);
 })();
@@ -60,6 +62,8 @@ function eventClick_NavProject(event) {
 
     fillProjectData(idButton);
     activateAllButtons(idButton);
+
+    sliderData.current_project = idButton;
 };
 
 function eventClick_ArrowL(event) {
@@ -70,7 +74,15 @@ function eventClick_ArrowR(event) {
     shiftProject(1);
 }
 function shiftProject(argShift) {
+    let currNumber = sliderData.current_project.substr(7);
+    currNumber = Number(currNumber) + argShift;
+    if (currNumber <= 0) {
+        currNumber = 3;
+    } else if (currNumber > 3) {
+        currNumber = 1;
+    }
 
+    sliderData.links_project_button['project' + currNumber].click();
 }
 
 function fillProjectData(argProject) {

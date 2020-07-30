@@ -177,8 +177,8 @@ body * {
     width: calc(41px + 29px + 64px + 29px + 41px);
 }
 
-.avt-projects-detail-bottomnav:before{
-    content: "";
+.avt-projects-detail-bottomnav-before{
+    /*content: "";*/
     background-image: url("../images/arrow_l.png");
     background-size: cover;
     width: 41px;
@@ -186,8 +186,8 @@ body * {
     margin-right: 29px;
 }
 
-.avt-projects-detail-bottomnav:after{
-    content: "";
+.avt-projects-detail-bottomnav-after{
+    /*content: "";*/
     background-image: url("../images/arrow_r.png");
     background-size: cover;
     width: 41px;
