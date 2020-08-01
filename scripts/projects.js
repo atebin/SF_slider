@@ -1,5 +1,6 @@
-let sourceProjects = {
-    project1: {
+let arrProjects = [
+    {
+        default: true,
         data: {
             city: 'Rostov-on-Don',
             location_prefix: 'LCD',
@@ -13,7 +14,8 @@ let sourceProjects = {
             alt: 'Completed projects. ',
         },
     },      
-    project2: {
+    {
+        default: false,
         data: {
             city: 'Sochi',
             location_prefix: '',
@@ -27,7 +29,8 @@ let sourceProjects = {
             alt: 'Completed projects. ',
         },
     },
-    project3: {
+    {
+        default: false,
         data: {
             city: 'Rostov-on-Don',
             location_prefix: '',
@@ -41,4 +44,4 @@ let sourceProjects = {
             alt: 'Completed projects. ',
         },
     },
-}
+]

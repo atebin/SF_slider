@@ -1,3 +1,4 @@
+// слухебный массив с данными для работы слайдера
 let sliderData = {
     links_project_button: {},
     links_project_dot: {},
@@ -11,24 +12,48 @@ let sliderData = {
     },
     links_foto: null,
     current_project: null,
+    current_num: null,
+    max_num: 0,
 };
 
 (function initSlider() {
 
-    // ставим обработчики кликов по названию проектов, а также сохраняем ссылки на кнопки проектов
-    let arrNavProject = [...document.querySelectorAll('.avt-projects-navtop-item__text')];
-    arrNavProject.forEach((elem) => {
-        elem.addEventListener('click', eventClick_NavProject);
-        let idButton = elem.id.split('-')[2];
-        sliderData.links_project_button[idButton] = elem;
-    });
+    let containerNav = document.querySelector('#avtid-nav-container');
+    let containerDot = document.querySelector('#avtid-dot-container');
+    
+    // читаем массив элементов с данными по проектам и создаем для них элементы управления
+    arrProjects.forEach((elem, num) => {
+        let textMenu = `${elem.data.city}, ${elem.data.location_name}`;
+        let newDiv = null;
 
-    // ставим обработчики кликов по нижним точкам, а также сохраняем ссылки на точки
-    let arrDotProject = [...document.querySelectorAll('.avt-projects-detail-bottomnav-block-item')];
-    arrDotProject.forEach((elem) => {
-        elem.addEventListener('click', eventClick_NavProject);
-        let idButton = elem.id.split('-')[2];
-        sliderData.links_project_dot[idButton] = elem;
+        sliderData.max_num = num;
+        
+        // создание верхнего меню, сохранение ссылок на него, на проект по умолчанию (создание имен проектов)
+        newDiv = document.createElement('div');
+        newDiv.classList.add('avt-projects-navtop-item');
+        newDiv.classList.add('avt-title');
+        newDiv.id = 'avtid-nav-project_' + num;
+        newDiv.innerHTML = textMenu;
+        containerNav.appendChild(newDiv);
+        if (elem.default == true) {
+            sliderData.current_project = newDiv;
+            sliderData.current_num = num;
+        }
+
+        // создание обработчиков на верхнее меню (обработчики на имена проектов)
+        newDiv.addEventListener('click', eventClick_NavProject);
+        sliderData.links_project_button['project_' + num] = newDiv;
+
+
+        // создание нижнего меню, сохранение ссылок на него (создаение точек)
+        newDiv = document.createElement('div');
+        newDiv.classList.add('avt-projects-detail-bottomnav-block-item');
+        newDiv.id = 'avtid-dot-project_' + num;
+        containerDot.appendChild(newDiv);
+        
+         // создание обработчиков на нижнее меню (обработчики на точки)
+        newDiv.addEventListener('click', eventClick_NavProject);
+        sliderData.links_project_dot['project_' + num] = newDiv;
     });
 
     // ставим обработчики на стрелки
@@ -41,30 +66,30 @@ let sliderData = {
         linkData[elem] = document.querySelector('#avtid-project-' + elem);
     };
     sliderData.links_foto = document.querySelector('#avtid-project-foto');
-
-    // обрабатываем данные о проектах
-    let firstProject = null;
-    for(elem in sourceProjects){
-        if (firstProject === null) {
-            firstProject = elem;
-        }
-    };
     
-    // заполняем страницу данными по первому проекту
-    sliderData.links_project_button[firstProject].click();
-
-    console.log(sliderData);
+    // заполняем страницу данными по дефолтному проекту
+    sliderData.current_project.click();
 })();
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+//      Обработчик клика по кнопке с проектами / на точке
 
 function eventClick_NavProject(event) {
     let currButton = this;
-    let idButton = currButton.id.split('-')[2];
+    let idProject = currButton.id.split('-')[2];
+    let currNumber = idProject.split('_')[1];
 
-    fillProjectData(idButton);
-    activateAllButtons(idButton);
+    sliderData.current_project = currButton;
+    sliderData.current_num = currNumber;
 
-    sliderData.current_project = idButton;
+    fillProjectData(idProject);
+    activateAllButtons(idProject);
 };
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+//      Обработчики клика по стрелкам "вправо" / "влево"
 
 function eventClick_ArrowL(event) {
     shiftProject(-1);
@@ -74,31 +99,39 @@ function eventClick_ArrowR(event) {
     shiftProject(1);
 }
 function shiftProject(argShift) {
-    let currNumber = sliderData.current_project.substr(7);
+    let currNumber = sliderData.current_num;
     currNumber = Number(currNumber) + argShift;
-    if (currNumber <= 0) {
-        currNumber = 3;
-    } else if (currNumber > 3) {
-        currNumber = 1;
+    if (currNumber < 0) {
+        currNumber = sliderData.max_num;
+    } else if (currNumber > sliderData.max_num) {
+        currNumber = 0;
     }
 
-    sliderData.links_project_button['project' + currNumber].click();
+    sliderData.links_project_button['project_' + currNumber].click();
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////
+//      Заполнение страницы данными по выбранному проекту
+
 function fillProjectData(argProject) {
-    let currData = sourceProjects[argProject].data;
+    let currData = arrProjects[sliderData.current_num];
     let linkData = sliderData.links_data;
 
     for (elem in linkData) {
-        linkData[elem].innerHTML = currData[elem];
+        linkData[elem].innerHTML = currData.data[elem];
     }
 
-    let currFoto = sourceProjects[argProject].foto;
+    let currFoto = currData.foto;
     let linkFoto = sliderData.links_foto;
 
     linkFoto.src = currFoto.path;
     linkFoto.alt = currFoto.alt;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+//      Активируем нужный пункт меню и нужную кнопку при клике на проект
 
 function activateAllButtons(argProject) {
 
@@ -114,18 +147,6 @@ function activateAllButtons(argProject) {
     linkMenu = sliderData.links_project_dot;
     nameClassActive = 'avt-projects-detail-bottomnav-block-item--active';
     activateBlock(argProject, linkMenu, nameClassActive);
-    
-
-    /*
-    let allProjectButton = sliderData.links_project_button;
-    let currProjectButton = sliderData.links_project_button[argProject];
-
-    for (elem in allProjectButton) {
-        allProjectButton[elem].classList.remove('avt-projects-navtop-item__text--active');
-    }
-
-    currProjectButton.classList.add('avt-projects-navtop-item__text--active');
-    */
 }
 
 function activateBlock(argProject, argArrControls, argClassActive) {
@@ -134,5 +155,6 @@ function activateBlock(argProject, argArrControls, argClassActive) {
         argArrControls[elem].classList.remove(argClassActive);
     }
 
+    console.log(argArrControls);
     argArrControls[argProject].classList.add(argClassActive);
 }
