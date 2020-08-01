@@ -66,7 +66,6 @@ body * {
     flex-direction: row;
 }
 
-.avt-projects-colleft{}
 .avt-projects-colright{
     width: 679px;
 }
@@ -128,9 +127,6 @@ body * {
     margin-bottom: 42px;
     color: #FFFFFF;
     padding-right: 20px;
-}
-
-.avt-projects-detail-photo{
 }
 
 .avt-projects-detail-data-blocks{

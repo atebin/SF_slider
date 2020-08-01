@@ -10,8 +10,8 @@ let arrProjects = [
             cost: 'Upon request',
         },
         foto: {
-            path: './images/projects_photo_1.png',
-            alt: 'Completed projects. ',
+            foto_big: './images/projects_photo_1.png',
+            foto_sm: './images/projects_photo_1_sm.png',
         },
     },      
     {
@@ -25,8 +25,8 @@ let arrProjects = [
             cost: 'Upon request',
         },
         foto: {
-            path: './images/projects_photo_2.png',
-            alt: 'Completed projects. ',
+            foto_big: './images/projects_photo_2.png',
+            foto_sm: './images/projects_photo_2_sm.png',
         },
     },
     {
@@ -40,8 +40,8 @@ let arrProjects = [
             cost: 'Upon request',
         },
         foto: {
-            path: './images/projects_photo_3.png',
-            alt: 'Completed projects. ',
+            foto_big: './images/projects_photo_3.png',
+            foto_sm: './images/projects_photo_3_sm.png',
         },
     },
 ]

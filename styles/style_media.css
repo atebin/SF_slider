@@ -26,8 +26,10 @@
         margin-bottom: 36px;
     }
 
-    .avt-project-slider:before{
-        content: "";
+    .avt-project-slider-before{
+        /*content: "";*/
+        position: absolute;
+        cursor: pointer;
         width: 36px;
         height: 36px;
         top: calc(50% - 18px - 18px);
@@ -43,8 +45,10 @@
         cursor: pointer;
     }    
 
-    .avt-project-slider:after{
-        content: "";
+    .avt-project-slider-after{
+        /*content: "";*/
+        position: absolute;
+        cursor: pointer;
         width: 36px;
         height: 36px;
         top: calc(50% - 18px - 18px);
