@@ -1,4 +1,4 @@
-let arrProjects = [
+export let arrProjects = [
     {
         default: true,
         data: {

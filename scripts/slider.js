@@ -1,4 +1,6 @@
-// слухебный массив с данными для работы слайдера
+import { arrProjects } from './projects.js';
+
+// служебный массив с данными для работы слайдера
 let sliderData = {
     links_project_button: {},
     links_project_dot: {},
@@ -96,7 +98,7 @@ function initSlider_SaveLinkToElementDOM(){
 //      Обработчик клика по кнопке с проектами / на точке
 
 function eventClick_NavProject(event) {
-    let currButton = this;
+    let currButton = event.target;
     let currNumber = currButton.id.split('-')[2];
 
     sliderData.current_num = currNumber;
@@ -107,11 +109,11 @@ function eventClick_NavProject(event) {
 ///////////////////////////////////////////////////////////////////////////////////////
 //      Обработчики клика по стрелкам "вправо" / "влево"
 
-function eventClick_ArrowL(event) {
+function eventClick_ArrowL() {
     shiftProject(-1);
 }
 
-function eventClick_ArrowR(event) {
+function eventClick_ArrowR() {
     shiftProject(1);
 }
 function shiftProject(argShift) {
