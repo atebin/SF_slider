@@ -85,11 +85,11 @@ function initSlider_EventHandlerClickArrows(){
 function initSlider_SaveLinkToElementDOM(){
 
     let  linkData = sliderData.links_data;
-    for (elem in linkData) {
+    for (let elem in linkData) {
         linkData[elem] = document.querySelector('#avtid-project-' + elem);
     };
     let  linkFoto = sliderData.links_foto;
-    for (elem in linkFoto) {
+    for (let elem in linkFoto) {
         linkFoto[elem] = document.querySelector('#avtid-project-' + elem);
     };
 }
@@ -179,14 +179,14 @@ function fillProjectData() {
     let currData = arrProjects[sliderData.current_num];
     let linkData = sliderData.links_data;
     
-    for (elem in linkData) {
+    for (let elem in linkData) {
         linkData[elem].innerHTML = currData.data[elem];
     }
 
     let currFoto = currData.foto;
     let linkFoto = sliderData.links_foto;
 
-    for (elem in linkFoto) {
+    for (let elem in linkFoto) {
         linkFoto[elem].src = currFoto[elem];
     }
 }
@@ -214,7 +214,7 @@ function activateBlock(argArrControls, argClassActive) {
     let currNum = sliderData.current_num;
     let currElement = 'project_' + currNum;
 
-    for (elem in argArrControls) {
+    for (let elem in argArrControls) {
         argArrControls[elem].classList.remove(argClassActive);
     }
 
